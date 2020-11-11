@@ -1,0 +1,178 @@
+% \LaTeX beamer theme with ucsty layout
+% author: Andrew Eisenhart <eisenhaw@mail.uc.edu>
+% credits : https://github.com/satta/zbh-beamer-theme
+% and Abertay https://github.com/Noktec/Abertay_Beamer_Template/
+
+
+\NeedsTeXFormat{LaTeX2e}
+% \ProvidesPackage{beamerthemeSTR}[ STR beamer theme]
+\RequirePackage{ifthen}
+\RequirePackage[scaled=.75]{helvet}
+\RequirePackage{color}
+\RequirePackage{textpos}
+\definecolor{ucgrey}{RGB}{50,50,50}
+\setbeamertemplate{itemize items}[circle]
+
+\newcommand{\addresstext}{
+  \\
+  Department of Computer Science Engineering\\ [2mm]
+  
+}
+
+\def\backgroundfile{uc_new1}
+\def\backgroundfiletitle{uc_new_title1}
+\newboolean{@use1610}
+\setboolean{@use1610}{false}
+\newboolean{@use169}
+\setboolean{@use169}{false}
+\newlength{\@headerdist}
+\setlength{\@headerdist}{5mm}
+
+
+\DeclareOption{1610}{
+  \def\backgroundfile{uc_new_wide1}
+  \def\backgroundfiletitle{uc_new_wide_title1}
+  \setboolean{@use1610}{true}
+}
+
+\DeclareOption{169}{
+  \def\backgroundfile{uc_new_wide1}
+  \def\backgroundfiletitle{uc_new_wide_title1}
+  \setboolean{@use169}{true}
+}
+
+\ProcessOptions
+
+
+\ifthenelse{\boolean{@use1610}}{ }
+
+\ifthenelse{\boolean{@use169}}{
+  \ifthenelse{\boolean{@use1610}}{
+   \PackageError{STRbeamertheme}{Options '1610' and '169' are mutually exclusive.}{}%
+  } { }
+}
+
+\mode<presentation>
+
+\setbeamerfont{author}{size=\large}
+\setbeamerfont{date}{size=\large}
+\setbeamerfont{example text}{series=\bfseries}
+\setbeamerfont{section}{series=\bfseries}
+\setbeamercolor{structure}{fg=black}
+\setbeamercolor{title}{fg=ucgrey}
+\setbeamerfont{title}{series=\bfseries}
+
+% disable navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+% frame
+\setbeamercolor{frametitle}{fg=ucgrey}
+\setbeamerfont{frametitle}{series=\mdseries,size=\LARGE}
+\setbeamerfont{framesubtitle}{series=\mdseries,size=\large}
+\setbeamertemplate{frametitle}
+{
+  \ifbeamer@plainframe
+  \else
+	\ifthenelse{\boolean{@use169}}
+	{
+		\begin{textblock*}{11cm}(1cm,-4.5mm)
+			\centering
+			\textbf{\insertframetitle}
+		\end{textblock*}
+	}
+	{
+	\begin{textblock*}{7.5cm}(3cm,-5mm)
+        \centering
+        \textbf{\insertframetitle}
+    \end{textblock*}
+	}
+    
+  \fi
+}
+
+% headline
+\setbeamercolor{headline}{fg=black}
+\setbeamertemplate{headline}{
+  \ifbeamer@plainframe
+  \else
+    \ifthenelse{\boolean{@use1610}}{
+      \vspace{11.5mm}
+      \leavevmode\tiny%
+      \hspace*{12.25cm}
+    }{
+      \ifthenelse{\boolean{@use169}}{
+        \vspace{10mm}
+        \leavevmode\tiny%
+        \hspace*{12.35cm}
+      }{
+        \vspace{1.2cm}
+        \leavevmode
+        \hspace*{10.5cm}
+      }
+    }
+    \normalsize
+  \fi
+}
+
+% title page with uc Logo
+\setbeamercolor{title page}{fg=white}
+\setbeamertemplate{title page}{
+    \centerline{
+        \begin{minipage}[c][0.825\paperheight][c]{0.9\paperwidth}
+        \centering
+        {
+            \textbf{\Huge{\inserttitle}}\\[2mm]
+            \color{black}
+            \textbf{\LARGE{\insertsubtitle}}\\
+            \vspace{4mm}
+            \textbf{\large\insertauthor}\\[3mm]
+            \scriptsize
+    		\ifdefined\myaffiliation
+    			\myaffiliation
+    		\else
+    			\addresstext 
+    		\fi
+        }
+        \end{minipage}
+    }
+    
+    \begin{minipage}[c][0.15\paperheight][t]{0.5\paperwidth}
+    \color{black}
+    \vspace{-10mm}\hspace{0pt}\insertdate
+    \end{minipage}
+    
+    \normalsize
+}
+
+% footer with name, date and page numbers
+\setbeamercolor{footline}{fg=black}
+\setbeamertemplate{footline}{
+  \ifbeamer@plainframe
+  \else
+    \ifnum\c@framenumber=1
+    \else
+    \leavevmode\scriptsize%
+    \color{white}
+    \makebox[0.333\paperwidth][l]{\hspace{10mm}\insertframenumber}%
+    \makebox[0.333\paperwidth][c]{\insertdate}%
+    \makebox[0.333\paperwidth][r]{\hspace{10mm}}%
+    \vspace{0.75mm}%
+    \fi
+  \fi
+}
+
+% use ucsty slide layout template
+\setbeamertemplate{background} {
+  \ifbeamer@plainframe
+  \else
+  \ifnum\c@framenumber=1%
+        \includegraphics[width=\paperwidth,height=\paperheight]{\backgroundfiletitle}
+    \else
+        \includegraphics[width=\paperwidth,height=\paperheight]{\backgroundfile}
+    \fi%
+  \fi
+}
+
+\mode
+<all>
+  

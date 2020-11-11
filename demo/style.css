@@ -1,0 +1,30 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.wrapper{
+    width: 80vw;
+    margin: 10vh 10vw 10vh 10vw;
+    display: flex;
+    flex-wrap: wrap;
+}
+.example{
+    width: 20vw;
+    height: 30vh;
+    background: cornflowerblue;
+    margin-left: 10vw;
+    margin-top: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 6px -6px black;
+}
+.example a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+}
+.example{
+    width: 30vw;
+}

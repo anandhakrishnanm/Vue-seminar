@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <!--Linking Vue-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12" defer></script>
+    <script src="eg3.js" defer></script>
+    <link rel="stylesheet" href="eg3.css">
+    <title>Component</title>
+</head>
+<body>
+    <div id="app">
+            <todo-item
+              v-for="item in list"
+              v-bind:todo="item"
+              v-bind:key="item.id"
+            ></todo-item>
+            
+            
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <!--Linking Vue-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12" defer></script>
+    <script src="eg2.js" defer></script>
+    <link rel="stylesheet" href="eg2.css">
+    <title>Reverse</title>
+</head>
+<body>
+    <div id="app">
+        <input v-model="message" type="text">
+        <p>{{ message }}</p>
+        <button v-on:click="reverseMessage">Reverse Message</button>
+    </div>
+</body>
+</html>

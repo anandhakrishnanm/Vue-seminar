@@ -1,0 +1,23 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.comp{
+    width: 250px;
+    height: 200px;
+    background-color: teal;
+    margin:5vw 20px 0px 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 10px;
+}
+#app{
+    display: flex;
+    flex-wrap: wrap;
+    width: 75vw;
+    margin: 1px 10vw 3px 15vw;
+}
